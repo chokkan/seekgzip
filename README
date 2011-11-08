@@ -1,3 +1,65 @@
                                SeekGzip
                               Version 1.0
                  http://github.com/chokkan/seekgzip
+
+
+
+* INTRODUCTION
+SeekGzip provides a utility and library for random seek on gzip
+streams. Because gzip streams do not support random seek, SeekGzip
+builds an index file for a gzip file. An index file has a postfix
+".idx" to the corresponding gzip file. The SeekGzip API provides
+the functionality for building index files, seeking on a gzip stream
+(with an index file associated), and reading data from the gzip stream.
+
+SeekGzip also provides a C++/SWIG API for reading (seekable) gzip
+streams.
+
+
+* HOW TO BUILD THE UTILITY
+$ make
+
+
+* HOW TO USE THE UTILITY
+
+(1) Building an index for a gzip file
+$ seekgzip -b <FILE>
+This builds an index file for random seek for the specified gzip file.
+This utility creates an index file ${FILE}.idx
+
+(2) Reading the data in the specified range
+$ seekgzip <FILE> [BEGIN:END]
+This reads the data in the gzip file ${FILE} from the offset ${BEGIN}
+to ${END}.
+
+
+
+* COPYRIGHT AND LICENSING INFORMATION
+
+This program is distributed under the zlib license.
+
+Portions of this software are based on zlib and zran.c
+
+The zlib License
+
+  Copyright (C) 1995-2009 Jean-loup Gailly and Mark Adler
+
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
+
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
+
+  Jean-loup Gailly        Mark Adler
+  jloup@gzip.org          madler@alumni.caltech.edu
+
