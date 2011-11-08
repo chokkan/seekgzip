@@ -640,7 +640,7 @@ int seekgzip_error(seekgzip_t* sgz)
 
 #ifdef BUILD_UTILITY
 
-static void seekgzip_error(int ret)
+static void seekgzip_perror(int ret)
 {
     switch (ret) {
     case SEEKGZIP_ERROR:
@@ -675,7 +675,7 @@ int main(int argc, char *argv[])
     int ret = 0;
 
     if (argc != 3) {
-        printf("This utility maintains an index for random (seekable) access of a gzip file.\n");
+        printf("This utility manages an index for random (seekable) access to a gzip file.\n");
         printf("USAGE:\n");
         printf("    %s -b <FILE>\n", argv[0]);
         printf("        Build an index file \"$FILE.idx\" for the gzip file $FILE.\n");
@@ -687,11 +687,11 @@ int main(int argc, char *argv[])
         const char *target = argv[2];
 
         printf("Building an index: %s.idx\n", target);
-        printf("Filesize up to: %d bit\n", sizeof(off_t) * 8);
+        printf("Filesize up to: %d bit\n", (int)sizeof(off_t) * 8);
 
         ret = seekgzip_build(target);
         if (ret != 0) {
-            seekgzip_error(ret);
+            seekgzip_perror(ret);
             return 1;
         }
         return 0;
