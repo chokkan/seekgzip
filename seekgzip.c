@@ -1,3 +1,18 @@
+/*
+ *        SeekGzip utility/library.
+ *
+ * Copyright (c) 2010-2011, Naoaki Okazaki
+ * All rights reserved.
+ * 
+ * For conditions of distribution and use, see copyright notice in README
+ * or zlib.h.
+ * 
+ * The core algorithm for random access originates from zran.c in zlib/gzip
+ * distribution. This code simply implements a data structure and algorithm
+ * for indices, wraps the functionality of random access as a library, and
+ * provides a command-line utility.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -679,7 +694,7 @@ int main(int argc, char *argv[])
         printf("USAGE:\n");
         printf("    %s -b <FILE>\n", argv[0]);
         printf("        Build an index file \"$FILE.idx\" for the gzip file $FILE.\n");
-        printf("    %s <FILE> [BEGIN:END]\n", argv[0]);
+        printf("    %s <FILE> [BEGIN-END]\n", argv[0]);
         printf("        Output the content of the gzip file $FILE of offset range [BEGIN:END).\n");
         return 0;
 
