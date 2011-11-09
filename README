@@ -5,12 +5,13 @@
 
 
 * INTRODUCTION
-SeekGzip provides a utility and library for random seek on gzip
-streams. Because gzip streams do not support random seek, SeekGzip
-builds an index file for a gzip file. An index file has a postfix
-".idx" to the corresponding gzip file. The SeekGzip API provides
-the functionality for building index files, seeking on a gzip stream
-(with an index file associated), and reading data from the gzip stream.
+SeekGzip provides a utility and library for random seek on gzip streams.
+Because gzip streams do not support random seek, SeekGzip builds an
+index file that stores necessary information for random seek. An index
+file has a postfix ".idx" to the corresponding gzip file. The SeekGzip
+API provides the functionality for building index files, seeking on a
+gzip stream (with an index file associated), and reading partial data
+from the gzip stream.
 
 SeekGzip also provides a C++/SWIG API for reading (seekable) gzip
 streams.
@@ -24,14 +25,19 @@ $ make
 
 (1) Building an index for a gzip file
 $ seekgzip -b <FILE>
-This builds an index file for random seek for the specified gzip file.
-This utility creates an index file ${FILE}.idx
+This builds an index file for the specified gzip file ${FILE}. This
+utility creates an index file ${FILE}.idx
 
 (2) Reading the data in the specified range
 $ seekgzip <FILE> [BEGIN:END]
 This reads the data in the gzip file ${FILE} from the offset ${BEGIN}
-to ${END}.
+to ${END}, and outputs the data to STDOUT.
 
+
+* HOW TO BUILD PYTHON MODULE
+$ make python
+$ python setup.py --build_ext
+$ python setup.py install
 
 
 * COPYRIGHT AND LICENSING INFORMATION
